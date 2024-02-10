@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class NowPlayingMoviesEntity extends Equatable {
+class MoviesEntity extends Equatable {
   final bool? adult;
   final String? backdropPath;
   final List<int>? genreIds;
@@ -16,7 +16,7 @@ class NowPlayingMoviesEntity extends Equatable {
   final double? voteAverage;
   final int? voteCount;
 
-  const NowPlayingMoviesEntity(
+  const MoviesEntity(
       {this.adult,
       this.backdropPath,
       this.genreIds,

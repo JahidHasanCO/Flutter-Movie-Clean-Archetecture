@@ -1,23 +1,22 @@
-import '../../domain/entities/now_playing_movies_entity.dart';
+import '../../domain/entities/movies_entity.dart';
 
-class NowPlayingMovieResponse {
+class MovieResponse {
   int page;
-  List<NowPlayingMovieResult> results;
+  List<MovieResult> results;
   int totalPages;
   int totalResults;
 
-  NowPlayingMovieResponse({
+  MovieResponse({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory NowPlayingMovieResponse.fromJson(Map<String, dynamic> json) =>
-      NowPlayingMovieResponse(
+  factory MovieResponse.fromJson(Map<String, dynamic> json) => MovieResponse(
         page: json["page"],
-        results: List<NowPlayingMovieResult>.from(
-            json["results"].map((x) => NowPlayingMovieResult.fromJson(x))),
+        results: List<MovieResult>.from(
+            json["results"].map((x) => MovieResult.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
@@ -30,8 +29,8 @@ class NowPlayingMovieResponse {
       };
 }
 
-class NowPlayingMovieResult extends NowPlayingMoviesEntity {
-  const NowPlayingMovieResult({
+class MovieResult extends MoviesEntity {
+  const MovieResult({
     bool? adult,
     String? backdropPath,
     List<int>? genreIds,
@@ -63,8 +62,7 @@ class NowPlayingMovieResult extends NowPlayingMoviesEntity {
           voteCount: voteCount,
         );
 
-  factory NowPlayingMovieResult.fromJson(Map<String, dynamic> json) =>
-      NowPlayingMovieResult(
+  factory MovieResult.fromJson(Map<String, dynamic> json) => MovieResult(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),

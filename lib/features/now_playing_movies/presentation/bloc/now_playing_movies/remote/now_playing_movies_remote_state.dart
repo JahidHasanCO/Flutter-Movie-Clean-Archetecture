@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_demo_app/features/now_playing_movies/domain/entities/now_playing_movies_entity.dart';
+import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart';
 
 abstract class NowPlayingMoviesRemoteState extends Equatable {
-  final List<NowPlayingMoviesEntity>? movies;
+  final List<MoviesEntity>? movies;
   final DioException? error;
 
   const NowPlayingMoviesRemoteState({this.movies, this.error});
@@ -17,7 +17,7 @@ class NowPlayingMoviesRemoteLoadingState extends NowPlayingMoviesRemoteState {
 }
 
 class NowPlayingMoviesRemoteLoadedState extends NowPlayingMoviesRemoteState {
-  const NowPlayingMoviesRemoteLoadedState(List<NowPlayingMoviesEntity> movies)
+  const NowPlayingMoviesRemoteLoadedState(List<MoviesEntity> movies)
       : super(movies: movies);
 }
 

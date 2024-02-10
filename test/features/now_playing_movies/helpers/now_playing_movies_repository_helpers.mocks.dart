@@ -6,7 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:flutter_demo_app/core/resources/data_state.dart' as _i2;
-import 'package:flutter_demo_app/features/now_playing_movies/domain/entities/now_playing_movies_entity.dart'
+import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart'
     as _i5;
 import 'package:flutter_demo_app/features/now_playing_movies/domain/repository/now_playing_movies_repository.dart'
     as _i3;
@@ -45,20 +45,19 @@ class MockNowPlayingMoviesRepository extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.DataState<List<_i5.NowPlayingMoviesEntity>>>
-      getNowPlayingMovies() => (super.noSuchMethod(
-            Invocation.method(
-              #getNowPlayingMovies,
-              [],
-            ),
-            returnValue: _i4
-                .Future<_i2.DataState<List<_i5.NowPlayingMoviesEntity>>>.value(
-                _FakeDataState_0<List<_i5.NowPlayingMoviesEntity>>(
-              this,
-              Invocation.method(
-                #getNowPlayingMovies,
-                [],
-              ),
-            )),
-          ) as _i4.Future<_i2.DataState<List<_i5.NowPlayingMoviesEntity>>>);
+  _i4.Future<_i2.DataState<List<_i5.MoviesEntity>>> getNowPlayingMovies() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getNowPlayingMovies,
+          [],
+        ),
+        returnValue: _i4.Future<_i2.DataState<List<_i5.MoviesEntity>>>.value(
+            _FakeDataState_0<List<_i5.MoviesEntity>>(
+          this,
+          Invocation.method(
+            #getNowPlayingMovies,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.DataState<List<_i5.MoviesEntity>>>);
 }

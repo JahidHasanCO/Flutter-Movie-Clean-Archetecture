@@ -1,5 +1,5 @@
 import 'package:flutter_demo_app/core/resources/data_state.dart';
-import 'package:flutter_demo_app/features/now_playing_movies/domain/entities/now_playing_movies_entity.dart';
+import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart';
 import 'package:flutter_demo_app/features/now_playing_movies/domain/usecases/get_now_playing_movies_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -16,7 +16,7 @@ void main() {
         GetNowPlayingMoviesUseCase(mockNowPlayingMoviesRepository);
   });
 
-  final testMovieDetails = NowPlayingMoviesEntity(
+  final testMovieDetails = MoviesEntity(
     adult: false,
     backdropPath: '/test.jpg',
     genreIds: const [1, 2],

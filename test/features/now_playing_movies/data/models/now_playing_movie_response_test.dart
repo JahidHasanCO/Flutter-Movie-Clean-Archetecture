@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:flutter_demo_app/features/now_playing_movies/data/models/now_playing_movie_response.dart';
-import 'package:flutter_demo_app/features/now_playing_movies/domain/entities/now_playing_movies_entity.dart';
+import 'package:flutter_demo_app/features/common/data/models/movie_response.dart';
+import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../helpers/json_reader.dart';
 
 void main() {
-  final results = NowPlayingMovieResult(
+  final results = MovieResult(
     adult: false,
     backdropPath: '/test.jpg',
     genreIds: const [1, 2],
@@ -24,20 +24,19 @@ void main() {
     voteCount: 1,
   );
 
-  final nowPlayingMovieResposne = NowPlayingMovieResponse(
+  final nowPlayingMovieResposne = MovieResponse(
       page: 1, results: [results], totalPages: 100, totalResults: 100);
 
   test('should be a subclass of NowPlayingMoviesEntity', () {
-    expect(
-        nowPlayingMovieResposne.results.first, isA<NowPlayingMoviesEntity>());
+    expect(nowPlayingMovieResposne.results.first, isA<MoviesEntity>());
   });
 
   test('should return valid model from json', () async {
     // arrange
-    final nowPlayingMovieResponse = NowPlayingMovieResponse(
+    final nowPlayingMovieResponse = MovieResponse(
       page: 1,
       results: [
-        NowPlayingMovieResult(
+        MovieResult(
           adult: false,
           backdropPath: "/4MCKNAc6AbWjEsM2h9Xc29owo4z.jpg",
           genreIds: [28, 53, 18],
@@ -63,7 +62,7 @@ void main() {
         'test/features/now_playing_movies/helpers/dummy_data/dummy_now_playing_movie_response.json'));
 
     // act
-    final result = NowPlayingMovieResponse.fromJson(jsonMap);
+    final result = MovieResponse.fromJson(jsonMap);
 
     // expect
     expect(result.toString(), equals(nowPlayingMovieResponse.toString()));

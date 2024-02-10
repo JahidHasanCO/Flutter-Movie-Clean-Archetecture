@@ -1,11 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_demo_app/features/now_playing_movies/domain/entities/now_playing_movies_entity.dart';
+import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart';
 import '../../../../core/util/image_poster_url.dart';
 
 class MovieCard extends StatelessWidget {
-  final NowPlayingMoviesEntity? movie;
+  final MoviesEntity? movie;
 
   const MovieCard({super.key, this.movie});
 

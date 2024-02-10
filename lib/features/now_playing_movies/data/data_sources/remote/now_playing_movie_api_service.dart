@@ -1,4 +1,4 @@
-import 'package:flutter_demo_app/features/now_playing_movies/data/models/now_playing_movie_response.dart';
+import 'package:flutter_demo_app/features/common/data/models/movie_response.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_demo_app/core/constants/constants.dart';
@@ -9,7 +9,7 @@ abstract class NowPlayingMovieApiService {
   factory NowPlayingMovieApiService(Dio dio) = _NowPlayingMovieApiService;
 
   @GET('/discover/movie')
-  Future<HttpResponse<NowPlayingMovieResponse>> getNowPlayingMovies({
+  Future<HttpResponse<MovieResponse>> getNowPlayingMovies({
     @Query("api_key") String apiKey = tmdbAPIKey,
     @Query("include_adult") String? includeAdult,
     @Query("include_video") String? includeVideo,

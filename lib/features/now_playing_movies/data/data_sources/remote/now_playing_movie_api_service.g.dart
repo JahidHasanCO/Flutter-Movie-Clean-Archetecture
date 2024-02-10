@@ -21,7 +21,7 @@ class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<NowPlayingMovieResponse>> getNowPlayingMovies({
+  Future<HttpResponse<MovieResponse>> getNowPlayingMovies({
     String apiKey = tmdbAPIKey,
     String? includeAdult,
     String? includeVideo,
@@ -48,7 +48,7 @@ class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<NowPlayingMovieResponse>>(Options(
+        _setStreamType<HttpResponse<MovieResponse>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -64,7 +64,7 @@ class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = NowPlayingMovieResponse.fromJson(_result.data!);
+    final value = MovieResponse.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

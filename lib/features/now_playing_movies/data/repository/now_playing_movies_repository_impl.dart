@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import '../../../../core/resources/data_state.dart';
 import '../../domain/repository/now_playing_movies_repository.dart';
 import '../data_sources/remote/now_playing_movie_api_service.dart';
-import '../models/now_playing_movie_response.dart';
+import '../../../common/data/models/movie_response.dart';
 
 class NowPlayingMoviesRepositoryImpl extends NowPlayingMoviesRepository {
   final NowPlayingMovieApiService _nowPlayingMovieApiService;
@@ -11,7 +11,7 @@ class NowPlayingMoviesRepositoryImpl extends NowPlayingMoviesRepository {
   NowPlayingMoviesRepositoryImpl(this._nowPlayingMovieApiService);
 
   @override
-  Future<DataState<List<NowPlayingMovieResult>>> getNowPlayingMovies() async {
+  Future<DataState<List<MovieResult>>> getNowPlayingMovies() async {
     try {
       final response = await _nowPlayingMovieApiService.getNowPlayingMovies(
           includeAdult: 'true',
@@ -25,7 +25,7 @@ class NowPlayingMoviesRepositoryImpl extends NowPlayingMoviesRepository {
 
       if (response.response.statusCode == HttpStatus.ok) {
         final nowPlayingMovies =
-            NowPlayingMovieResponse.fromJson(response.response.data).results;
+            MovieResponse.fromJson(response.response.data).results;
 
         // debugPrint('Now Playing Movies: ${response.response.data}');
 
