@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'now_playing_movie_api_service.dart';
+part of 'popular_movie_api_service.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,8 +8,8 @@ part of 'now_playing_movie_api_service.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
-  _NowPlayingMovieApiService(
+class _PopularMovieApiService implements PopularMovieApiService {
+  _PopularMovieApiService(
     this._dio, {
     this.baseUrl,
   }) {
@@ -21,16 +21,13 @@ class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<MovieResponse>> getNowPlayingMovies({
+  Future<HttpResponse<MovieResponse>> getPopularMovies({
     String apiKey = tmdbAPIKey,
     String? includeAdult,
     String? includeVideo,
     String? language,
     String? page,
     String? sortBy,
-    String? withReleaseType,
-    String? releaseDateGte,
-    String? releaseDateLte,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -40,9 +37,6 @@ class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
       r'language': language,
       r'page': page,
       r'sort_by': sortBy,
-      r'with_release_type': withReleaseType,
-      r'release_date.gte': releaseDateGte,
-      r'release_date.lte': releaseDateLte,
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
@@ -55,7 +49,7 @@ class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
     )
             .compose(
               _dio.options,
-              '/movie/now_playing',
+              '/movie/popular',
               queryParameters: queryParameters,
               data: _data,
             )

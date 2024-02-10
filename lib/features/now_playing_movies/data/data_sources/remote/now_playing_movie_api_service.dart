@@ -8,7 +8,7 @@ part 'now_playing_movie_api_service.g.dart';
 abstract class NowPlayingMovieApiService {
   factory NowPlayingMovieApiService(Dio dio) = _NowPlayingMovieApiService;
 
-  @GET('/discover/movie')
+  @GET('/movie/now_playing')
   Future<HttpResponse<MovieResponse>> getNowPlayingMovies({
     @Query("api_key") String apiKey = tmdbAPIKey,
     @Query("include_adult") String? includeAdult,

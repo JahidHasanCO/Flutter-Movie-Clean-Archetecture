@@ -1,4 +1,4 @@
-import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/now_playing_movies/remote/now_playing_movies_remote_bloc.dart';
+import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/remote/now_playing_movies_remote_bloc.dart';
 
 import '../data/data_sources/remote/now_playing_movie_api_service.dart';
 import '../data/repository/now_playing_movies_repository_impl.dart';

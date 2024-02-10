@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/now_playing_movies/remote/now_playing_movies_remote_bloc.dart';
-import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/now_playing_movies/remote/now_playing_movies_remote_state.dart';
+import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/remote/now_playing_movies_remote_bloc.dart';
+import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/remote/now_playing_movies_remote_state.dart';
 
 import '../../../now_playing_movies/presentation/widget/movie_card.dart';
+import '../../../popular_movies/presentation/bloc/remote/popular_movies_remote_bloc.dart';
+import '../../../popular_movies/presentation/bloc/remote/popular_movies_remote_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -73,7 +75,13 @@ class _HomePageState extends State<HomePage> {
   _buildBody() {
     switch (selectedIndex) {
       case 0:
-        return _buildNowPlayingMovieOnTop();
+        return Column(
+          children: [
+            _buildNowPlayingMovieOnTop(),
+            const Text('Popular Movies', style: TextStyle(fontSize: 24)),
+            _buildPopularMovies(),
+          ],
+        );
       case 1:
         return Container();
       case 2:
@@ -103,6 +111,44 @@ class _HomePageState extends State<HomePage> {
           }
         }
         if (state is NowPlayingMoviesRemoteErrorState) {
+          return const Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.refresh),
+                SizedBox(height: 8),
+                Text('Error loading movies. Tap to refresh.'),
+              ],
+            ),
+          );
+        }
+        return const Center(
+          child: CupertinoActivityIndicator(),
+        );
+      },
+    );
+  }
+
+  _buildPopularMovies() {
+    return BlocBuilder<PopularMoviesRemoteBloc, PopularMoviesRemoteState>(
+      builder: (_, state) {
+        if (state is PopularMoviesRemoteLoadedState) {
+          if (state.movies!.isEmpty) {
+            return const Center(
+              child: Text('No movies available'),
+            );
+          } else {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return MovieCard(
+                  movie: state.movies![index],
+                );
+              },
+              itemCount: state.movies!.length,
+            );
+          }
+        }
+        if (state is PopularMoviesRemoteErrorState) {
           return const Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
