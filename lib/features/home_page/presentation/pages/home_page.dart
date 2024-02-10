@@ -68,7 +68,13 @@ class _HomePageState extends State<HomePage> {
 
   _buildAppBar() {
     return AppBar(
-      title: const Text('Movie App'),
+      title: const Text('Movies'),
+      actions: const [
+        IconButton(
+          icon: Icon(CupertinoIcons.search),
+          onPressed: null,
+        ),
+      ],
     );
   }
 
@@ -76,8 +82,11 @@ class _HomePageState extends State<HomePage> {
     switch (selectedIndex) {
       case 0:
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 16),
             _buildNowPlayingMovieOnTop(),
+            const SizedBox(height: 16),
             const Text('Popular Movies', style: TextStyle(fontSize: 24)),
             _buildPopularMovies(),
           ],
@@ -142,6 +151,7 @@ class _HomePageState extends State<HomePage> {
           } else {
             return Expanded(
               child: ListView.builder(
+                scrollDirection: Axis.vertical,
                 itemBuilder: (context, index) {
                   return MovieCard(
                     movie: state.movies![index],
