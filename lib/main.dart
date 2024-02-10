@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_demo_app/features/home_page/presentation/pages/home_page.dart';
 import 'package:flutter_demo_app/features/now_playing_movies/presentation/bloc/remote/now_playing_movies_remote_bloc.dart';
+import 'package:flutter_demo_app/features/popular_movies/presentation/bloc/remote/popular_movies_remote_bloc.dart';
+import 'package:flutter_demo_app/features/popular_movies/presentation/bloc/remote/popular_movies_remote_event.dart';
+import 'features/common/presentation/providers/bloc_providers.dart';
 import 'features/now_playing_movies/presentation/bloc/remote/now_playing_movies_remote_event.dart';
-import 'features/popular_movies/presentation/bloc/remote/popular_movies_remote_bloc.dart';
-import 'features/popular_movies/presentation/bloc/remote/popular_movies_remote_event.dart';
 import 'injection_container.dart';
 
 Future<void> main() async {
@@ -22,36 +23,17 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MultiBlocProvider(
         providers: [
-          _buildNowPlayingMoviesRemoteBlocProvider(),
-          _buildPopularMoviesRemoteBlocProvider(),
-          // Add more BlocProviders as needed
+          buildRemoteBlocProvider(
+            bloc: NowPlayingMoviesRemoteBloc(locator()),
+            event: const GetNowPlayingMoviesEvent(),
+          ),
+          buildRemoteBlocProvider(
+            bloc: PopularMoviesRemoteBloc(locator()),
+            event: const GetPopularMoviesEvent(),
+          ),
         ],
         child: const HomePage(),
       ),
-    );
-  }
-
-  BlocProvider<NowPlayingMoviesRemoteBloc>
-      _buildNowPlayingMoviesRemoteBlocProvider() {
-    return BlocProvider<NowPlayingMoviesRemoteBloc>(
-      create: (context) {
-        return locator()
-          ..add(
-            const GetNowPlayingMoviesEvent(),
-          );
-      },
-    );
-  }
-
-  BlocProvider<PopularMoviesRemoteBloc>
-      _buildPopularMoviesRemoteBlocProvider() {
-    return BlocProvider<PopularMoviesRemoteBloc>(
-      create: (context) {
-        return locator()
-          ..add(
-            const GetPopularMoviesEvent(),
-          );
-      },
     );
   }
 }
