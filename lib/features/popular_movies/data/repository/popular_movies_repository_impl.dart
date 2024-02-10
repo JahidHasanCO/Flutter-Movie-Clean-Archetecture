@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_demo_app/core/resources/data_state.dart';
 import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart';
 import 'package:flutter_demo_app/features/popular_movies/data/data_sources/remote/popular_movie_api_service.dart';
@@ -25,17 +26,19 @@ class PopularMoviesRepositoryImpl extends PopularMoviesRepository {
       );
 
       if (response.response.statusCode == HttpStatus.ok) {
-        final nowPlayingMovies =
+        final popularMovies =
             MovieResponse.fromJson(response.response.data).results;
 
-        if (nowPlayingMovies.isEmpty) {
+        debugPrint('popularMovies: $popularMovies');
+
+        if (popularMovies.isEmpty) {
           return DataError(DioException(
               error: 'No data found',
               response: response.response,
               type: DioExceptionType.unknown,
               requestOptions: response.response.requestOptions));
         }
-        return DataSuccess(nowPlayingMovies);
+        return DataSuccess(popularMovies);
       } else {
         return DataError(DioException(
             error: response.response.statusMessage,

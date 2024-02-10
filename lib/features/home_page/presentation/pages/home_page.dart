@@ -100,13 +100,15 @@ class _HomePageState extends State<HomePage> {
               child: Text('No movies available'),
             );
           } else {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return MovieCard(
-                  movie: state.movies![index],
-                );
-              },
-              itemCount: state.movies!.length,
+            return Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return MovieCard(
+                    movie: state.movies![index],
+                  );
+                },
+                itemCount: state.movies!.length,
+              ),
             );
           }
         }
@@ -138,13 +140,15 @@ class _HomePageState extends State<HomePage> {
               child: Text('No movies available'),
             );
           } else {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return MovieCard(
-                  movie: state.movies![index],
-                );
-              },
-              itemCount: state.movies!.length,
+            return Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, index) {
+                  return MovieCard(
+                    movie: state.movies![index],
+                  );
+                },
+                itemCount: state.movies!.length,
+              ),
             );
           }
         }
