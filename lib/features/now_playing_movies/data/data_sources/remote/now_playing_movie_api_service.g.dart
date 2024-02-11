@@ -9,10 +9,7 @@ part of 'now_playing_movie_api_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _NowPlayingMovieApiService implements NowPlayingMovieApiService {
-  _NowPlayingMovieApiService(
-    this._dio, {
-    this.baseUrl,
-  }) {
+  _NowPlayingMovieApiService(this._dio) {
     baseUrl ??= 'https://api.themoviedb.org/3';
   }
 
