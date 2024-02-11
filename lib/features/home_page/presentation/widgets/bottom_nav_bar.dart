@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_demo_app/config/colors/colors.dart';
 
 import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
@@ -10,8 +11,9 @@ buildBottomNavigationBar() {
     builder: (context, state) {
       return BottomNavigationBar(
         currentIndex: state.selectedIndex ?? 0,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.indigoAccent,
+        unselectedItemColor: textColorAddtional,
+        selectedItemColor: primaryColor,
+        backgroundColor: backgroundColorAddtional,
         onTap: (index) {
           BottomNavBarEvent selectedEvent;
           switch (index) {

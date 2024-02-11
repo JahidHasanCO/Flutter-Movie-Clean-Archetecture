@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_demo_app/config/colors/colors.dart';
 
 import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
@@ -13,13 +14,13 @@ buildSideNavigationBar() {
         NavigationRail(
           selectedIndex: state.selectedIndex ?? 0,
           useIndicator: false,
-          elevation: 1,
-          selectedIconTheme:
-              const IconThemeData(color: Colors.indigoAccent, size: 30),
+          elevation: 5,
+          backgroundColor: backgroundColorAddtional,
+          selectedIconTheme: const IconThemeData(color: primaryColor, size: 30),
           unselectedIconTheme:
-              const IconThemeData(color: Colors.grey, size: 30),
-          selectedLabelTextStyle: const TextStyle(color: Colors.indigoAccent),
-          unselectedLabelTextStyle: const TextStyle(color: Colors.grey),
+              const IconThemeData(color: textColorAddtional, size: 30),
+          selectedLabelTextStyle: const TextStyle(color: primaryColor),
+          unselectedLabelTextStyle: const TextStyle(color: textColorAddtional),
           extended: false,
           onDestinationSelected: (index) {
             BottomNavBarEvent selectedEvent;

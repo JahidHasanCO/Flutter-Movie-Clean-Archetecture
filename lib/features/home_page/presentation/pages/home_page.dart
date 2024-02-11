@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../config/colors/colors.dart';
 import '../../../common/presentation/responsive/responsive.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
@@ -21,12 +22,14 @@ class HomePage extends StatelessWidget {
     // var deviceHeight = MediaQuery.of(context).size.height;
     // var deviceWidth = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-      bottomNavigationBar:
-          isMobile(context) ? buildBottomNavigationBar() : null,
-      body: isMobile(context)
-          ? _buildBodyWithBottomNavBarBloc()
-          : buildSideNavigationBar(),
+    return SafeArea(
+      child: Scaffold(
+        bottomNavigationBar:
+            isMobile(context) ? buildBottomNavigationBar() : null,
+        body: isMobile(context)
+            ? _buildBodyWithBottomNavBarBloc()
+            : buildSideNavigationBar(),
+      ),
     );
   }
 }
@@ -64,16 +67,36 @@ _buildBodyWithBottomNavBarBloc() {
 }
 
 _homePageBody(context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const SizedBox(height: 16),
-      buildNowPlayingMovies(MediaQuery.of(context).size.height,
-          MediaQuery.of(context).size.width),
-      const SizedBox(height: 16),
-      const Text('Popular Movies', style: TextStyle(fontSize: 24)),
-      _buildPopularMovies(),
-    ],
+  var deviceHeight = MediaQuery.of(context).size.height;
+  var deviceWidth = MediaQuery.of(context).size.width;
+  return SingleChildScrollView(
+    physics: const AlwaysScrollableScrollPhysics(),
+    child: Column(
+      children: [
+        Stack(
+          alignment: Alignment.topLeft,
+          children: [
+            buildNowPlayingMovies(
+              deviceHeight,
+              deviceWidth,
+            ),
+            Padding(
+                padding: const EdgeInsets.all(16),
+                child: Image(
+                  image: const AssetImage('assets/images/netflix.png'),
+                  height: (deviceHeight * 0.05),
+                  width: (deviceWidth * 0.05),
+                  fit: BoxFit.contain,
+                )),
+          ],
+        ),
+        const SizedBox(height: 16),
+        const Text('Popular Movies',
+            style: TextStyle(
+                fontSize: 24, fontWeight: FontWeight.bold, color: textColor)),
+        _buildPopularMovies(),
+      ],
+    ),
   );
 }
 
@@ -83,19 +106,20 @@ _buildPopularMovies() {
       if (state is PopularMoviesRemoteLoadedState) {
         if (state.movies!.isEmpty) {
           return const Center(
-            child: Text('No movies available'),
+            child: Text(
+              'No movies available',
+            ),
           );
         } else {
-          return Expanded(
-            child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return MovieCard(
-                  movie: state.movies![index],
-                );
-              },
-              itemCount: state.movies!.length,
-            ),
+          return ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return MovieCard(
+                movie: state.movies![index],
+              );
+            },
+            itemCount: state.movies!.length,
           );
         }
       }

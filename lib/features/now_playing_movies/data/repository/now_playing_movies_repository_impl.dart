@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import '../../../../core/resources/data_state.dart';
 import '../../domain/repository/now_playing_movies_repository.dart';
 import '../data_sources/remote/now_playing_movie_api_service.dart';
@@ -28,7 +27,7 @@ class NowPlayingMoviesRepositoryImpl extends NowPlayingMoviesRepository {
         final nowPlayingMovies =
             MovieResponse.fromJson(response.response.data).results;
 
-        debugPrint('Now Playing Movies: ${response.response.data}');
+        // debugPrint('Now Playing Movies: ${response.response.data}');
 
         if (nowPlayingMovies.isEmpty) {
           return DataError(DioException(

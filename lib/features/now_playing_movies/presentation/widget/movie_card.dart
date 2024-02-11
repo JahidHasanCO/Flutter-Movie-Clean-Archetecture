@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_demo_app/features/common/domain/entities/movies_entity.dart';
+import '../../../../config/colors/colors.dart';
 import '../../../../core/util/image_poster_url.dart';
 
 class MovieCard extends StatelessWidget {
@@ -85,7 +86,7 @@ class MovieCard extends StatelessWidget {
                 fontFamily: 'Butler',
                 fontWeight: FontWeight.w900,
                 fontSize: 18,
-                color: Colors.black87,
+                color: textColor,
               ),
             ),
 
@@ -109,6 +110,7 @@ class MovieCard extends StatelessWidget {
                   movie?.releaseDate!.toString() ?? '',
                   style: const TextStyle(
                     fontSize: 12,
+                    color: textColor,
                   ),
                 ),
               ],
