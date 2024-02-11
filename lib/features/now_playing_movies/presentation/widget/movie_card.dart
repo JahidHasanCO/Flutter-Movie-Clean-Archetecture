@@ -45,10 +45,10 @@ class MovieCard extends StatelessWidget {
                 child: Container(
                   width: MediaQuery.of(context).size.width / 3,
                   height: double.maxFinite,
-                  child: CupertinoActivityIndicator(),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.08),
                   ),
+                  child: const CupertinoActivityIndicator(),
                 ),
               ),
             ),
@@ -59,10 +59,10 @@ class MovieCard extends StatelessWidget {
                 child: Container(
                   width: MediaQuery.of(context).size.width / 3,
                   height: double.maxFinite,
-                  child: Icon(Icons.error),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.08),
                   ),
+                  child: const Icon(Icons.error),
                 ),
               ),
             ));

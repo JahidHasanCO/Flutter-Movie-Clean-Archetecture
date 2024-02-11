@@ -39,7 +39,7 @@ void main() {
         MovieResult(
           adult: false,
           backdropPath: "/4MCKNAc6AbWjEsM2h9Xc29owo4z.jpg",
-          genreIds: [28, 53, 18],
+          genreIds: const [28, 53, 18],
           id: 866398,
           originalLanguage: "en",
           originalTitle: "The Beekeeper",
