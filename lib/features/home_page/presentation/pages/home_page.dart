@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo_app/features/common/presentation/responsive/responsive.dart';
+import 'package:flutter_demo_app/injection_container.dart';
+import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
+import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
+import '../bloc/bottom_nav_bar/bottom_nav_bar_state.dart';
 import '../widgets/now_playing_movies.dart';
 
 import 'package:flutter/cupertino.dart';
@@ -17,16 +22,7 @@ class HomePage extends StatelessWidget {
     var deviceWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Expanded(
-        child: Column(
-          children: [
-            buildNowPlayingMovies(deviceHeight, deviceWidth),
-            const SizedBox(height: 16),
-            const Text('Popular Movies', style: TextStyle(fontSize: 24)),
-            _buildPopularMovies(),
-          ],
-        ),
-      ),
+      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 }
@@ -162,30 +158,72 @@ _buildPopularMovies() {
   );
 }
 
-//   _buildBottomNavigationBar() {
-//     return BottomNavigationBar(
-//       currentIndex: selectedIndex,
-//       unselectedItemColor: Colors.grey,
-//       selectedItemColor: Colors.indigoAccent,
-//       onTap: (index) {
-//         setState(() {
-//           selectedIndex = index;
-//         });
-//       },
-//       items: const <BottomNavigationBarItem>[
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.home),
-//           label: 'Home',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.search),
-//           label: 'Search',
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.person),
-//           label: 'Profile',
-//         ),
-//       ],
-//     );
-//   }
+// _buildBottomNavigationBar() {
+//   return BottomNavigationBar(
+//     currentIndex: selectedIndex,
+//     unselectedItemColor: Colors.grey,
+//     selectedItemColor: Colors.indigoAccent,
+//     onTap: (index) {
+//       setState(() {
+//         selectedIndex = index;
+//       });
+//     },
+//     items: const <BottomNavigationBarItem>[
+//       BottomNavigationBarItem(
+//         icon: Icon(Icons.home),
+//         label: 'Home',
+//       ),
+//       BottomNavigationBarItem(
+//         icon: Icon(Icons.search),
+//         label: 'Search',
+//       ),
+//       BottomNavigationBarItem(
+//         icon: Icon(Icons.person),
+//         label: 'Profile',
+//       ),
+//     ],
+//   );
 // }
+
+_buildBottomNavigationBar() {
+  return BlocBuilder<BottomNavBarBloc, BottomNavBarState>(
+    builder: (context, state) {
+      return BottomNavigationBar(
+        currentIndex: state.selectedIndex ?? 0,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.indigoAccent,
+        onTap: (index) {
+          BottomNavBarEvent selectedEvent;
+          switch (index) {
+            case 0:
+              selectedEvent = BottomNavBarEvent.homeSelected;
+              break;
+            case 1:
+              selectedEvent = BottomNavBarEvent.searchSelected;
+              break;
+            case 2:
+              selectedEvent = BottomNavBarEvent.profileSelected;
+              break;
+            default:
+              selectedEvent = BottomNavBarEvent.homeSelected;
+          }
+          context.read<BottomNavBarBloc>().add(selectedEvent);
+        },
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
+          ),
+        ],
+      );
+    },
+  );
+}

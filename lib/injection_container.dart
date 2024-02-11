@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'features/home_page/di/home_page_di_container.dart';
 import 'features/now_playing_movies/di/now_playing_movies_di_container.dart';
 import 'features/popular_movies/di/popular_movies_di_container.dart';
 
@@ -10,4 +11,6 @@ Future<void> initializeDependencies() async {
 
   nowPlayingMoviesDIContainer();
   popularMoviesDIContainer();
+
+  homePageDIContainer();
 }
