@@ -65,8 +65,12 @@ dynamic buildNowPlayingMovies(deviceHeight, deviceWidth) {
                           padding: EdgeInsets.symmetric(
                               horizontal: deviceWidth * 0.03, vertical: 5),
                           child: Container(
-                            width: deviceWidth * 0.078,
-                            height: deviceWidth * 0.02,
+                            width: isMobile(context)
+                                ? deviceWidth * 0.06
+                                : deviceWidth * 0.078,
+                            height: isMobile(context)
+                                ? deviceWidth * 0.03
+                                : deviceWidth * 0.02,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(
                                   100), // Adjust the radius as needed
@@ -78,7 +82,9 @@ dynamic buildNowPlayingMovies(deviceHeight, deviceWidth) {
                                 'Now Playing',
                                 style: TextStyle(
                                   color: textColor,
-                                  fontSize: deviceWidth * 0.01,
+                                  fontSize: isMobile(context)
+                                      ? deviceWidth * 0.05
+                                      : deviceWidth * 0.01,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

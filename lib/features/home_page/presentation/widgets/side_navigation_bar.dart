@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_demo_app/config/colors/colors.dart';
-
 import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_state.dart';
-import '../pages/home_page.dart';
 
-buildSideNavigationBar() {
+Widget buildSideNavigationBar(Widget child) {
   return BlocBuilder<BottomNavBarBloc, BottomNavBarState>(
     builder: (context, state) {
-      return Row(children: [
+      return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         NavigationRail(
           selectedIndex: state.selectedIndex ?? 0,
           useIndicator: false,
@@ -55,7 +53,7 @@ buildSideNavigationBar() {
           ],
         ),
         Expanded(
-          child: buildBodyWithSideNavBarBloc(),
+          child: child,
         ),
       ]);
     },
