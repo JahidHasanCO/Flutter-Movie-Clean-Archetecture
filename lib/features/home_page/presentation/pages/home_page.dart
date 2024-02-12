@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../../config/colors/colors.dart';
 import '../../../common/presentation/responsive/responsive_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +8,6 @@ import '../../../popular_movies/presentation/bloc/remote/popular_movies_remote_b
 import '../../../popular_movies/presentation/bloc/remote/popular_movies_remote_state.dart';
 import '../widgets/desktop_home_body.dart';
 import '../widgets/mobile_home_body.dart';
-import '../widgets/now_playing_movies.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
