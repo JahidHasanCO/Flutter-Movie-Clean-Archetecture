@@ -25,6 +25,8 @@ dependencies:
   carousel_slider: ^4.2.1
   retrofit: ^4.1.0
 
+  window_manager: ^0.3.8
+
   # Mockito
   mockito: ^5.4.4
 

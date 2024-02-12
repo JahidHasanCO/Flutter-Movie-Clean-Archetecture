@@ -5,7 +5,6 @@ import '../../../../config/colors/colors.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_state.dart';
-import '../pages/home_page.dart';
 import 'bottom_nav_bar.dart';
 import 'now_playing_movies.dart';
 

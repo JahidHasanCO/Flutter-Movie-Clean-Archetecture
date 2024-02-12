@@ -10,7 +10,6 @@ import '../../../now_playing_movies/presentation/bloc/remote/now_playing_movies_
 import '../bloc/bottom_nav_bar/bottom_nav_bar_bloc.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_event.dart';
 import '../bloc/bottom_nav_bar/bottom_nav_bar_state.dart';
-import 'side_navigation_bar.dart';
 
 class DesktopHomeBody extends StatelessWidget {
   const DesktopHomeBody({super.key});
@@ -19,7 +18,9 @@ class DesktopHomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: buildSideNavigationBar(buildBodyWithSideNavBarBloc()),
+        backgroundColor: backgroundColor,
+        // body: buildSideNavigationBar(buildBodyWithSideNavBarBloc()),
+        body: Expanded(child: _homePageBody(context)),
       ),
     );
   }
@@ -130,6 +131,7 @@ class DesktopHomeBody extends StatelessWidget {
                     ),
                     Container(
                       width: deviceWidth,
+                      height: deviceHeight * 0.9,
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
