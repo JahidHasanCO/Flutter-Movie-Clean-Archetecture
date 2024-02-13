@@ -12,6 +12,7 @@ import 'features/now_playing_movies/presentation/bloc/remote/now_playing_movies_
 import 'injection_container.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await initializeDependencies();
   runApp(const MyApp());
 }

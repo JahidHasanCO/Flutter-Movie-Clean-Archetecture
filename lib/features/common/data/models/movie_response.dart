@@ -1,4 +1,8 @@
+import 'package:floor/floor.dart';
 import '../../domain/entities/movies_entity.dart';
+import '../../utils/converter/floor_date_time_converter.dart';
+import '../../utils/converter/floor_list_int_converter.dart';
+import '../../utils/movie_type.dart';
 
 class MovieResponse {
   int page;
@@ -29,6 +33,7 @@ class MovieResponse {
       };
 }
 
+@Entity(tableName: 'movies', primaryKeys: ['id'])
 class MovieResult extends MoviesEntity {
   const MovieResult({
     bool? adult,
@@ -45,6 +50,7 @@ class MovieResult extends MoviesEntity {
     bool? video,
     double? voteAverage,
     int? voteCount,
+    MovieType movieType = MovieType.all,
   }) : super(
           adult: adult,
           backdropPath: backdropPath,
