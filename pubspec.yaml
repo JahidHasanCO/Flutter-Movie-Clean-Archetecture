@@ -28,6 +28,8 @@ dependencies:
 
   window_manager: ^0.3.8
 
+  connectivity_plus: ^5.0.2
+
   # Mockito
   mockito: ^5.4.4
 

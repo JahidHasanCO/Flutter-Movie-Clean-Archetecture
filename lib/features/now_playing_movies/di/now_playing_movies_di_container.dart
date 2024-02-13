@@ -11,7 +11,7 @@ void nowPlayingMoviesDIContainer() {
       NowPlayingMovieApiService(locator()));
 
   locator.registerSingleton<NowPlayingMoviesRepository>(
-      NowPlayingMoviesRepositoryImpl(locator()));
+      NowPlayingMoviesRepositoryImpl(locator(), locator()));
 
   locator.registerSingleton<GetNowPlayingMoviesUseCase>(
       GetNowPlayingMoviesUseCase(locator()));

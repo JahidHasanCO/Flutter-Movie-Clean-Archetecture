@@ -10,6 +10,12 @@ abstract class NowPlayingMoviesDao {
   @insert
   Future<void> insertNowPlayingMovies(MovieResult nowPlayingMovies);
 
+  @insert
+  Future<void> insertAllNowPlayingMovies(List<MovieResult> nowPlayingMovies);
+
   @delete
   Future<void> deleteNowPlayingMovies(MovieResult nowPlayingMovies);
+
+  @Query('DELETE FROM movies')
+  Future<void> deleteAllNowPlayingMovies();
 }

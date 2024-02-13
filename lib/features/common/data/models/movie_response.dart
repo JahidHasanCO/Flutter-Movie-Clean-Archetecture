@@ -1,7 +1,5 @@
 import 'package:floor/floor.dart';
 import '../../domain/entities/movies_entity.dart';
-import '../../utils/converter/floor_date_time_converter.dart';
-import '../../utils/converter/floor_list_int_converter.dart';
 import '../../utils/movie_type.dart';
 
 class MovieResponse {
@@ -83,6 +81,23 @@ class MovieResult extends MoviesEntity {
         video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
+      );
+
+  factory MovieResult.fromEntity(MoviesEntity entity) => MovieResult(
+        adult: entity.adult,
+        backdropPath: entity.backdropPath,
+        genreIds: entity.genreIds,
+        id: entity.id,
+        originalLanguage: entity.originalLanguage,
+        originalTitle: entity.originalTitle,
+        overview: entity.overview,
+        popularity: entity.popularity,
+        posterPath: entity.posterPath,
+        releaseDate: entity.releaseDate,
+        title: entity.title,
+        video: entity.video,
+        voteAverage: entity.voteAverage,
+        voteCount: entity.voteCount,
       );
 
   Map<String, dynamic> toJson() => {

@@ -60,4 +60,47 @@ class MockNowPlayingMoviesRepository extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.DataState<List<_i5.MoviesEntity>>>);
+
+  @override
+  _i4.Future<List<_i5.MoviesEntity>> getLocalNowPlayingMovies() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getLocalNowPlayingMovies,
+          [],
+        ),
+        returnValue:
+            _i4.Future<List<_i5.MoviesEntity>>.value(<_i5.MoviesEntity>[]),
+      ) as _i4.Future<List<_i5.MoviesEntity>>);
+
+  @override
+  _i4.Future<void> cacheNowPlayingMovies(List<_i5.MoviesEntity>? movies) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #cacheNowPlayingMovies,
+          [movies],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> deleteNowPlayingMovies(_i5.MoviesEntity? movie) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteNowPlayingMovies,
+          [movie],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+
+  @override
+  _i4.Future<void> deleteAllCachedNowPlayingMovies() => (super.noSuchMethod(
+        Invocation.method(
+          #deleteAllCachedNowPlayingMovies,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }
